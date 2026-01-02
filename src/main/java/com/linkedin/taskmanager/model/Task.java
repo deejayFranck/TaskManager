@@ -4,7 +4,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
@@ -25,7 +24,7 @@ public class Task {
     private String title;
     private String status;
 
-    public Task(String title, String status){
+    public Task(String title, String status) {
         this.title = title;
         this.status = status;
     }

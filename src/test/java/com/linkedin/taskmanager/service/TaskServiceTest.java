@@ -3,15 +3,11 @@ package com.linkedin.taskmanager.service;
 import com.linkedin.taskmanager.exception.TaskNotFoundException;
 import com.linkedin.taskmanager.model.Task;
 import com.linkedin.taskmanager.repository.TaskRepository;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
-
-import javax.swing.text.html.Option;
 
 import java.util.Arrays;
 import java.util.List;
@@ -36,7 +32,7 @@ public class TaskServiceTest {
 //    }
 
     @Test
-    void testUpdateTask(){
+    void testUpdateTask() {
         // arrange
         Task existingTask = new Task(1L, "Old title", "To do");
         Task updateTaskData = new Task("New title", "Done");
@@ -56,7 +52,7 @@ public class TaskServiceTest {
     }
 
     @Test
-    void testDeleteTaskNotFound(){
+    void testDeleteTaskNotFound() {
         // arrange
         when(taskRepository.findById(1L)).thenReturn(Optional.empty());
 
@@ -67,7 +63,7 @@ public class TaskServiceTest {
     }
 
     @Test
-    void testDeleteTask(){
+    void testDeleteTask() {
         // arrange
         Task existingTask = new Task(1L, "Test task to delete", "To do");
         when(taskRepository.findById(1L)).thenReturn(Optional.of(existingTask));
@@ -82,7 +78,7 @@ public class TaskServiceTest {
 
 
     @Test
-    void testCreateTask(){
+    void testCreateTask() {
         // arrange
         Task task = new Task("Test task", "to do");
         when(taskRepository.save(any(Task.class))).thenReturn(task);
@@ -97,7 +93,7 @@ public class TaskServiceTest {
     }
 
     @Test
-    void testGetAllTasks(){
+    void testGetAllTasks() {
         // arrange
         List<Task> tasks = Arrays.asList(
                 new Task("Task 1", "To do"),
@@ -116,7 +112,7 @@ public class TaskServiceTest {
     }
 
     @Test
-    void testGetTaskById(){
+    void testGetTaskById() {
         // arrange
         Task task = new Task(1L, "Task 1", "To do");
         when(taskRepository.findById(1L)).thenReturn(Optional.of(task));
@@ -134,7 +130,7 @@ public class TaskServiceTest {
     }
 
     @Test
-    void testGetTaskByIdTaskNotFound(){
+    void testGetTaskByIdTaskNotFound() {
         // arrange
         when(taskRepository.findById(1L)).thenReturn(Optional.empty());
 
@@ -144,7 +140,7 @@ public class TaskServiceTest {
     }
 
     @Test
-    void testUpdateTaskStatus(){
+    void testUpdateTaskStatus() {
         // arrange
         Task task = new Task(1L, "Existing task", "To do");
 

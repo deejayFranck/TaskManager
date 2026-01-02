@@ -12,17 +12,18 @@ public class TaskService {
 
     private final TaskRepository taskRepository;
 
-    public TaskService(TaskRepository taskRepository){
+    public TaskService(TaskRepository taskRepository) {
         this.taskRepository = taskRepository;
     }
+
     public Task updateTaskStatus(Long id, String status) {
 
-            Task taskToUpdate = getTaskById(id);
-            taskToUpdate.setStatus(status);
-            return taskRepository.save(taskToUpdate);
+        Task taskToUpdate = getTaskById(id);
+        taskToUpdate.setStatus(status);
+        return taskRepository.save(taskToUpdate);
     }
 
-    public Task getTaskById(Long id){
+    public Task getTaskById(Long id) {
         return taskRepository.findById(id)
                 .orElseThrow(() -> new TaskNotFoundException("Task not found, id: " + id));
     }
@@ -40,7 +41,7 @@ public class TaskService {
         taskRepository.delete(taskToDelete);
     }
 
-    public Task updateTask(Long  id, Task taskData) {
+    public Task updateTask(Long id, Task taskData) {
         Task existingTask = getTaskById(id);
         existingTask.setTitle(taskData.getTitle());
         existingTask.setStatus(taskData.getStatus());

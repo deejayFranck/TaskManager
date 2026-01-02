@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.data.jpa.test.autoconfigure.DataJpaTest;
 
-
 import java.util.List;
 import java.util.Optional;
 
@@ -18,7 +17,7 @@ public class TaskRepositoryTest {
     TaskRepository taskRepository;
 
     @Test
-    void testSaveTask(){
+    void testSaveTask() {
         // arrange
         Task task = new Task("Test task", "To do");
 
@@ -31,7 +30,7 @@ public class TaskRepositoryTest {
     }
 
     @Test
-    void testFindAllTasks(){
+    void testFindAllTasks() {
         // arrange
         Task task1 = new Task("Task 1", "To do");
         taskRepository.save(task1);
@@ -47,7 +46,7 @@ public class TaskRepositoryTest {
     }
 
     @Test
-    void testFindTaskById(){
+    void testFindTaskById() {
         // arrange
         Task task = new Task("Test task", "To do");
         taskRepository.save(task);
@@ -65,7 +64,7 @@ public class TaskRepositoryTest {
 
 
     @Test
-    void testUpdateTask(){
+    void testUpdateTask() {
         // arrange
         Task task = new Task("Test task", "To do");
         taskRepository.save(task);
@@ -81,7 +80,7 @@ public class TaskRepositoryTest {
 
 
     @Test
-    void testDeleteTask(){
+    void testDeleteTask() {
 
         // arrange
         Task task = new Task("Task to delete", "Done");

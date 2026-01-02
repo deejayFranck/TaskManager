@@ -5,7 +5,6 @@ import com.linkedin.taskmanager.model.Task;
 import com.linkedin.taskmanager.service.TaskService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.boot.webmvc.test.autoconfigure.WebMvcTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
@@ -36,7 +35,7 @@ public class TaskControllerTest {
     private ObjectMapper objectMapper;
 
     @Test
-    void testGetTaskByIdTaskNotFound() throws Exception{
+    void testGetTaskByIdTaskNotFound() throws Exception {
         // arrange
         when(taskService.getTaskById(1L)).thenThrow(new TaskNotFoundException("Task not found"));
 
@@ -69,8 +68,8 @@ public class TaskControllerTest {
 
         // act & assert
         mockMvc.perform(put("/tasks/1")
-                .contentType((MediaType.APPLICATION_JSON))
-                .content(taskJson))
+                        .contentType((MediaType.APPLICATION_JSON))
+                        .content(taskJson))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id").value(1L))
                 .andExpect(jsonPath("$.title").value("Updated task"));
@@ -79,7 +78,7 @@ public class TaskControllerTest {
     }
 
     @Test
-    void testGetTaskById() throws Exception{
+    void testGetTaskById() throws Exception {
         // arrange
         Task task = new Task(1L, "Task 1", "To do");
 
@@ -87,7 +86,7 @@ public class TaskControllerTest {
 
         // act & assert
         mockMvc.perform(get("/tasks/1")
-                .contentType(MediaType.APPLICATION_JSON))
+                        .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id").value(1))
                 .andExpect(jsonPath("$.title").value("Task 1"));
@@ -96,7 +95,7 @@ public class TaskControllerTest {
     }
 
     @Test
-    void testCreateTask() throws Exception{
+    void testCreateTask() throws Exception {
         // arrange
         Task task = new Task("Controller test task", "To do");
 
@@ -104,15 +103,15 @@ public class TaskControllerTest {
 
         // act & assert
         mockMvc.perform(post("/tasks")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsString(task)))
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(task)))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.title").vaClue("Controller test task"));
+                .andExpect(jsonPath("$.title").value("Controller test task"));
     }
 
 
     @Test
-    void testCreateTaskInvalidInput() throws Exception{
+    void testCreateTaskInvalidInput() throws Exception {
         // arrange
         Task task = new Task("", "To do");
 
@@ -127,7 +126,7 @@ public class TaskControllerTest {
     @Test
     void testGetAllTasks() throws Exception {
         // arrange
-        List< Task> tasks = Arrays.asList(
+        List<Task> tasks = Arrays.asList(
                 new Task("Task 1", "To do"),
                 new Task("Task 2", "In progress")
         );
